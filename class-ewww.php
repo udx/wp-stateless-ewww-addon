@@ -5,7 +5,8 @@ namespace WPSL\Ewww;
 use wpCloud\StatelessMedia\Compatibility;
 
 /**
- * @todo make testable and test
+ * Class Ewww
+ * @package WPSL\Ewww
  */
 class Ewww extends Compatibility {
   protected $id = 'ewww';
@@ -43,10 +44,6 @@ class Ewww extends Compatibility {
     // wp_stateless_file_name filter will remove the basedir from the path and prepend with root dir.
     $name = apply_filters('wp_stateless_file_name', $file);
     do_action('sm:sync::syncFile', $name, $file, true, array('use_root' => true));
-
-
-    // if($fullsize && file_exists($file . '.bak'))
-    //     do_action( 'sm:sync::syncFile', $name . '.bak', $file . '.bak', true);
 
     if (file_exists($file . '.webp')) {
       add_filter('upload_mimes', array($this, 'add_webp_mime'), 10, 2);

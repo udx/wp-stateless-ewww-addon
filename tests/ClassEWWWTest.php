@@ -1,8 +1,9 @@
 <?php
 
+namespace WPSL\Ewww;
+
 use PHPUnit\Framework\TestCase;
 use wpCloud\StatelessMedia\WPStatelessStub;
-use WPSL\Ewww\Ewww;
 
 /**
  * Class ClassEWWWTest
@@ -39,6 +40,24 @@ class ClassEWWWTest extends TestCase {
       ->method('do_action')->with('sm:sync::syncFile');
 
     $this->assertEquals(null, $ewww->pre_optimization('https://test.test/test/test.test', null, null));
+  }
+
+  public function testPostOptimization() {
+    $ewww = new Ewww();
+
+    $this::$functions->expects($this->exactly(1))
+      ->method('apply_filters')->with('wp_stateless_file_name');
+
+    $this::$functions->expects($this->exactly(2))
+      ->method('do_action')->with('sm:sync::syncFile');
+
+    $this::$functions->expects($this->exactly(1))
+      ->method('add_filter')->with('upload_mimes');
+
+    $this::$functions->expects($this->exactly(1))
+      ->method('remove_filter')->with('upload_mimes');
+
+    $this->assertEquals(null, $ewww->post_optimization('https://test.test/test/test.test', null, null));
   }
 
   public function add_filter() {
@@ -82,6 +101,9 @@ function remove_filter($a, $b) {
 }
 
 function wp_doing_ajax() {
+  return true;
+}
+function file_exists() {
   return true;
 }
 
