@@ -1,4 +1,11 @@
 <?php
+/**
+ * Compatibility Plugin Name: EWWW Image Optimizer
+ * Compatibility Plugin URI: https://wordpress.org/plugins/ewww-image-optimizer/
+ *
+ * Compatibility Description: Sync images optimized by EWWW Image Optimizer plugin.
+ *
+ */
 
 namespace WPSL\Ewww;
 
