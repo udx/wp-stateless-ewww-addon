@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: WP-Stateless - EWWW Image Optimizer Addon
- * Plugin URI: https://udx.io
+ * Plugin URI: https://wp-stateless.github.io/
  * Description: Ensures compatibility with EWWW Image Optimizer.
  * Author: UDX
  * Version: 0.0.1
